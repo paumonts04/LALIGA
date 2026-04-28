@@ -8,7 +8,7 @@ if (isset($_POST['registrar'])) {
     $pass = $_POST['password']; 
     $email = trim($_POST['email']); 
     $equipo_post = $_POST['id_equipo_fav'];
-    $suscripcion = $_POST['suscripcion'];
+    $suscripcion = $_POST['suscripcion'] ?? '';
 
     // VALIDACIONES
 
@@ -41,6 +41,26 @@ if (isset($_POST['registrar'])) {
     }
     if (!preg_match('/[^A-Za-z0-9]/', $pass)) {
         $errores[] = "La contraseña debe contener algún carácter especial.";
+    }
+
+    // Suscripción
+    if ($suscripcion === '') {
+        $errores[] = "Debes seleccionar un plan de suscripción.";
+    }
+
+    if (empty($errores)) {
+        $stmtUsuario = $con->prepare("SELECT id FROM usuarios WHERE nombre_usuario = ? LIMIT 1");
+        if ($stmtUsuario) {
+            $stmtUsuario->bind_param("s", $user);
+            $stmtUsuario->execute();
+            $resUsuario = $stmtUsuario->get_result();
+            if ($resUsuario && $resUsuario->num_rows > 0) {
+                $errores[] = "Ese nombre de usuario ya está registrado.";
+            }
+            $stmtUsuario->close();
+        } else {
+            $errores[] = "Error al validar el nombre de usuario.";
+        }
     }
 
     if (empty($errores)) {
@@ -134,7 +154,7 @@ if (isset($_POST['registrar'])) {
                 <div class="form-group">
                     <label>Plan de Suscripción</label>
                     <div class="contenedor-planes-registro">
-                        <input type="radio" name="suscripcion" value="0" id="p0" required <?php if(isset($suscripcion) && $suscripcion == '0') echo 'checked'; ?>>
+                        <input type="radio" name="suscripcion" value="0" id="p0" <?php if(isset($suscripcion) && $suscripcion == '0') echo 'checked'; ?>>
                         <label for="p0" class="tarjeta-plan">
                             <span class="plan-titulo">GRATIS</span>
                             <span class="plan-precio">0€</span>
