@@ -1,37 +1,52 @@
-<?php
-// Incluimos la conexión
+﻿<?php
+//Incluimos la conexión
 require_once 'conexion.php'; 
 
-// Si ya hay una sesión iniciada, mandamos al usuario directo a la zona privada
+//Si ya hay una sesión iniciada, mandamos al usuario directo a la zona privada
 if (isset($_SESSION['usuario_id'])) {
-    header("Location: principal.php");
+    header("Location: ../index.php");
     exit();
 }
 
-$error_login = ""; //Iniciamos variable
+$error_login = ""; 
 
 //Procesamos el formulario al pulsar "Ingresar"
 if (isset($_POST['ingresar'])) {
-    // Escapamos los datos básicos para evitar errores con comillas
     $user = $_POST['nombre_usuario'];
     $pass = $_POST['password'];
 
-    $sql = "SELECT id, nombre_usuario FROM usuarios 
-            WHERE nombre_usuario = '$user' AND password = '$pass'";
-    
-    $resultado = $con->query($sql);
+    // Buscamos solo por el nombre de usuario para obtener su hash
+    $stmt = $con->prepare("SELECT id, nombre_usuario, password FROM usuarios WHERE nombre_usuario = ?");
 
-    if ($resultado && $resultado->num_rows > 0) {
-        $datos = $resultado->fetch_assoc();
-        
-        // GUARDAR SESIÓN: Usamos el nombre de columna correcto que devuelve el SELECT
-        $_SESSION['usuario_id'] = $datos['id']; 
-        $_SESSION['nombre_usuario'] = $datos['nombre_usuario'];
-        
-        header("Location: equipos.php");
-        exit();
+    if ($stmt) {
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        if ($resultado && $resultado->num_rows > 0) {
+            $datos = $resultado->fetch_assoc();
+            
+            // VERIFICACIÓN DE CONTRASEÑA HASHEADA
+            if (password_verify($pass, $datos['password'])) {
+                // GUARDAR SESIÓN
+                $_SESSION['usuario_id'] = $datos['id']; 
+                $_SESSION['nombre_usuario'] = $datos['nombre_usuario'];
+                
+                $stmt->close();
+                header("Location: equipos.php");
+                exit();
+            } else {
+                // La contraseña no coincide con el hash
+                $error_login = "Usuario o contraseña incorrectos.";
+            }
+        } else {
+            // El usuario no existe
+            $error_login = "Usuario o contraseña incorrectos.";
+        }
+
+        $stmt->close();
     } else {
-        $error_login = "Usuario o contraseña incorrectos.";
+        $error_login = "Error en el sistema de acceso.";
     }
 }
 ?>
