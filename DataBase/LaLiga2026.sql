@@ -1,0 +1,498 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 26-02-2026 a las 21:27:10
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `liga`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `equipos`
+--
+
+CREATE TABLE `equipos` (
+  `id_equipo` int(11) NOT NULL,
+  `equipo` varchar(50) NOT NULL,
+  `estadio` varchar(50) NOT NULL,
+  `capacidad` int(11) DEFAULT NULL,
+  `poblacion` int(11) DEFAULT NULL,
+  `presupuesto` decimal(15,2) DEFAULT NULL,
+  `entrenador` varchar(50) DEFAULT NULL,
+  `escudo` varchar(100) DEFAULT NULL,
+  `puntos` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `equipos`
+--
+
+INSERT INTO `equipos` (`id_equipo`, `equipo`, `estadio`, `capacidad`, `poblacion`, `presupuesto`, `entrenador`, `escudo`, `puntos`) VALUES
+(1, 'Real Madrid', 'Bernabeu', 84000, 3422416, 1248.00, 'Xabi Alonso', 'realmadrid.png', 0),
+(2, 'Osasuna', 'El Sadar', 23576, 207777, 87.00, 'Alessio Lisci', 'osasuna.png', 0),
+(3, 'Real Betis', 'Benito Villamarin', 60721, 687488, 16.40, 'Manuel Pellegrini', 'betis.png', 0),
+(4, 'Real Oviedo', 'Carlos Tartiere', 30500, 226872, 22.70, 'Veljko Paunovic', 'realoviedo.png', 0),
+(5, 'Athletic de Bilbao', 'San Mames', 53331, 348085, 185.90, 'Ernesto Valverde', 'athletic.png', 0),
+(6, 'F.C Barcelona', 'Spotify Camp Nou', 105000, 1732066, 859.00, 'Hansi Flick', 'barcelona.png', 0),
+(7, 'Villareal', 'Ceramica', 23500, 52504, 143.00, 'Marcelino García Toral', 'villarreal.png', 0),
+(8, 'Celta de Vigo', 'Abanca Balaidos', 22904, 294000, 124.60, 'Claudio Giraldez', 'celta.jpg', 0),
+(9, 'Atletico de Madrid', ' Riyadh Air Metropolitano', 70460, 3416771, 459.00, 'Diego Simeone', 'atlmadrid.png', 0),
+(10, 'Girona', 'Montilivi', 14624, 109293, 113.00, 'Míchel Sánchez', 'girona.png', 0),
+(11, 'València', 'Mestalla', 49430, 844424, 99.10, 'Carlos Corberan', 'valencia.png', 0),
+(12, 'Mallorca', 'Son Moix', 26020, 949047, 67.00, 'Jagoba Arrasate', 'mallorca.png', 0),
+(13, 'Levante', ' Ciudad de Valencia', 26354, 844424, 16.60, 'Julian Calero', 'levante.png', 0),
+(14, 'Elche', 'Martinez Valero', 33732, 242317, 14.90, 'Eder Sarabia', 'elche.png', 0),
+(15, 'Getafe', 'Coliseum', 16500, 189906, 57.00, 'Jose Bordalás', 'getafe.png', 0),
+(16, 'Alavés', 'Mendizorroza', 19840, 338594, 77.30, 'Eduardo Coudet', 'alaves.png', 0),
+(17, 'Rayo Vallecano', 'Vallecas', 14708, 241603, 50.00, 'Iñigo Perez', 'rayovallecano.png', 0),
+(18, 'Real Sociedad', 'Reale Arena', 40000, 189865, 148.00, 'Sergio Francisco', 'realsociedad.png', 0),
+(19, 'Sevilla', ' Ramon Sanchez', 70000, 687488, 120.90, 'Matias Almeyda', 'sevilla.png', 0),
+(20, 'RCD Espanyol', 'RCDE Stadium', 38529, 10, 83.00, 'Manolo González', 'espanyol.png', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `jugadores`
+--
+
+CREATE TABLE `jugadores` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `id_equipo` int(11) DEFAULT NULL,
+  `goles` int(11) DEFAULT 0,
+  `salario` decimal(10,2) DEFAULT NULL,
+  `posicion` varchar(50) DEFAULT NULL,
+  `nacionalidad` varchar(50) DEFAULT NULL,
+  `edad` int(11) DEFAULT NULL,
+  `img` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `jugadores`
+--
+
+INSERT INTO `jugadores` (`id`, `nombre`, `id_equipo`, `goles`, `salario`, `posicion`, `nacionalidad`, `edad`, `img`) VALUES
+(1, 'kylian mbappe', 1, 0, 32.00, 'delantero', 'Francia ', 26, 'mbappe.jpg'),
+(2, 'vinicius junior', 1, 0, 30.00, 'delantero', 'Brasil', 25, 'vinicius.jpg'),
+(3, 'rodrygo', 1, 0, 12.00, 'delantero', 'Brasil', 24, 'rodrygo.jpg'),
+(4, 'endrick', 1, 0, 4.00, 'delantero', 'Brasil', 19, 'endrick.jpg'),
+(5, 'jude bellingham', 1, 0, 20.00, 'centrocampista', 'Inglaterra ', 22, 'bellingham.jpg'),
+(6, 'federico valverde', 1, 0, 16.00, 'centrocampista', 'Uruguay', 27, 'valverde.jpg'),
+(7, 'aurelien tchouameni', 1, 0, 12.00, 'centrocampista', 'Francia', 25, 'tchouameni.jpg'),
+(8, 'eduardo camavinga', 1, 0, 12.00, 'centrocampista', 'Francia', 22, 'camavinga.jpg'),
+(9, 'dani ceballos', 1, 0, 10.00, 'centrocampista', 'España', 29, 'ceballos.jpg'),
+(10, 'franco mastantuono', 1, 0, 4.00, 'centrocampista', 'Argentina', 18, 'mastantuno.jpg'),
+(11, 'brahim diaz', 1, 0, 7.00, 'centrocampista', 'España', 26, 'brahim.jpg'),
+(12, 'arda guler', 1, 0, 5.00, 'centrocampista', 'Turquia', 20, 'guler.jpg'),
+(13, 'david alaba', 1, 0, 22.00, 'defensa', 'Austria', 33, 'alaba.jpg'),
+(14, 'antonio rudiger', 1, 0, 14.00, 'defensa', 'Alemania', 32, 'rudiger.jpg'),
+(15, 'eder militao', 1, 0, 14.00, 'defensa', 'Brazil', 27, 'militao.jpg'),
+(16, 'ferland mendy', 1, 0, 10.00, 'defensa', 'Francia', 30, 'mendy.jpg'),
+(17, 'dani carvajal', 1, 0, 10.00, 'defensa', 'España', 31, 'carvajal.jpeg'),
+(18, 'fran garcia', 1, 0, 5.00, 'defensa', 'España', 26, 'fran_garcia.jpg'),
+(19, 'thibaut courtois', 1, 0, 15.00, 'portero', 'Bélgica ', 33, 'courtois.jpg'),
+(20, 'andriy lunin', 1, 0, 4.00, 'portero', 'Ucrania ', 26, 'lunin.jpeg'),
+(21, 'Ante Budimir', 2, 0, 1.50, 'Delantero', 'Croacia', 34, 'ante_budimir.jpeg'),
+(22, 'Aimar Oroz', 2, 0, 0.50, 'Medio', 'España', 23, 'aimar_oroz.jpg'),
+(23, 'Victor Muñoz', 2, 0, 0.00, 'Delantero', 'España', 22, 'victor_muñoz.jpg'),
+(24, 'Jon Moncayola', 2, 0, 0.60, 'Medio', 'España', 27, 'unknow.webp'),
+(25, 'Lucas Torró', 2, 0, 0.00, 'Medio', 'España', 31, 'lucas_torro.jpg'),
+(26, 'Abel Bretones', 2, 0, 0.30, 'Defensa', 'España', 25, 'unknow.webp'),
+(27, 'Valentin Rosier', 2, 0, 1.70, 'Defensa', 'Francia', 29, 'unknow.webp'),
+(28, 'Juan Cruz', 2, 0, 0.40, 'Defensa', 'España', 33, 'juan_cruz.jpeg'),
+(29, 'Alejandro Catena', 2, 0, 0.00, 'Defensa', 'España', 30, 'unknow.webp'),
+(30, 'Flavien Boyomo', 2, 0, 0.00, 'Defensa', 'Camerún', 23, 'unknow.webp'),
+(31, 'Sergio Herrera', 2, 0, 0.48, 'Portero', 'España', 32, 'sergio_herrera.jpeg'),
+(32, 'Juan Camilo Hernández Suárez', 3, 0, 9.00, 'Delantero', 'Colombia', 26, ''),
+(33, 'Abdessamad Ezzalzouli', 3, 0, 3.00, 'Delantero', 'Marruecos', 23, ''),
+(34, 'Antony Matheus dos Santos ', 3, 0, 9.00, 'Delantero', 'Brasil', 25, ''),
+(35, 'Giovani Lo Celso', 3, 0, 4.00, 'Mediocentro', 'Argentino', 29, ''),
+(36, 'Sofyan Amrabat', 3, 0, 5.00, 'Mediocentro', 'Marruecos', 29, ''),
+(37, 'Pablo Fornals Malla', 3, 0, 3.00, 'Defensa', 'España', 29, ''),
+(38, 'Héctor Junior Firpo Adamés', 3, 0, 4.00, 'Defensa', 'R.Dominicana', 29, ''),
+(39, 'Natan Bernardo de Souza', 3, 0, 2.00, 'Defensa izquierdo', 'Brasil', 24, ''),
+(40, 'Marc Bartra Aregall', 3, 0, 2.00, 'Defensa central', 'España', 34, ''),
+(41, 'Héctor Bellerín Morouno', 3, 0, 3.00, 'Lateral derecho', 'España', 30, ''),
+(42, 'Pau López Sabata', 3, 0, 3.00, 'Portero', 'España', 30, ''),
+(43, 'Leander Dendoncker', 4, 0, 3.00, 'Centrocampista', 'Bélgica', 30, 'dendoncker.jpg'),
+(44, 'Josip Brekalo', 4, 0, 3.00, 'Delantero', 'Croacia', 27, 'brekalo.jpg'),
+(45, 'David Carmo', 4, 0, 3.00, 'Defensa', 'Angola', 26, 'carmo.webp'),
+(46, 'Eric Bailly', 4, 0, 2.00, 'Defensa', 'Costa de Marfil', 31, 'eric-bailly.jpg'),
+(47, 'Santiago Colombatto', 4, 0, 1.00, 'Centrocampista', 'Argentina', 28, 'colomabtto.jpeg'),
+(48, 'Federico Viñas	', 4, 0, 1.00, 'Delantero', 'Uruguay', 27, 'Federico-Vinas.webp'),
+(49, 'Alberto Reina', 4, 0, 1.00, 'Centrocampista', 'España', 27, 'Alberto-Reina.jpg'),
+(50, 'Aarón Escandell', 4, 0, 1.00, 'Portero', 'España', 29, 'escandell.jpeg'),
+(51, 'Nacho Vidal', 4, 0, 1.00, 'Defensa', 'España', 30, 'Nacho-vidal.jpeg'),
+(52, 'David Costas', 4, 0, 1.00, 'Defensa', 'España', 30, 'costas.jpeg'),
+(53, 'Dani Calvo', 4, 0, 1.00, 'Defensa', 'España', 31, 'calvo.jpeg'),
+(54, 'Haissem Hassan', 4, 0, 1.00, 'Delantero', 'Francia', 23, 'Haissem-Hassan.jpeg'),
+(55, 'Oier Luengo', 4, 0, 1.00, 'Defensa', 'España', 27, 'luengo.png'),
+(56, 'Santi Cazorla', 4, 0, 0.20, 'Centrocampista', 'España', 40, 'cazorla.avif'),
+(57, 'Nico Williams', 5, 0, 16.00, 'Extremo Izquierdo', 'España', 23, 'nicowilliams.jpeg'),
+(58, 'Iñaki Williams', 5, 0, 11.00, 'Extreo Derecho', 'Ghana', 31, 'inakiwilliams.jpg'),
+(59, 'Oihan Sancet', 5, 0, 2.00, 'Mediocentro Ofensivo', 'España', 25, 'oihansancet.jpg'),
+(60, 'Gorka Guruzeta', 5, 0, 2.00, 'Delantero Centro', 'España', 28, 'gorkagurzeta.jpg'),
+(61, 'Álex Berenguer', 5, 0, 2.00, 'Extremo Izquierdo', 'España', 30, 'alexberenguer.jpeg'),
+(62, 'Robert Navarro', 5, 0, 2.00, 'Extremo Derecho', 'España', 23, 'robertnavarro.jpeg'),
+(63, 'Maroan Sannadi', 5, 0, 1.00, 'Delantero Centro', 'España', 24, 'maroansannadi.jpg'),
+(64, 'Dani Vivian', 5, 0, 3.00, 'Defensa Central', 'España', 26, 'danivivian.jpg'),
+(65, 'Aitor Paredes', 5, 0, 2.00, 'Defensa Central', 'España', 25, 'aitorparedes.webp'),
+(66, 'Yeray Álvarez', 5, 0, 2.00, 'Defensa Central', 'España', 30, 'yerayalvarez.jpg'),
+(67, 'Yuri Berchiche', 5, 0, 4.00, 'Lateral Izquierdo', 'España', 35, 'yuriberbiche.jpg'),
+(68, 'Jesús Areso', 5, 0, 2.00, 'Lateral Derecho', 'España', 26, 'jesusareso.jpg'),
+(69, 'Andoni Gorosabel', 5, 0, 2.00, 'Lateral Derecho', 'España', 29, 'andonigorosabel.jpeg'),
+(70, 'Mikel Vesga', 5, 0, 2.00, 'Mediocentro Defensivo', 'España', 32, 'mikelvesga.jpg'),
+(71, 'Beñat Prados', 5, 0, 1.00, 'Mediocentro', 'España', 24, 'benatprados.jpg'),
+(72, 'Iñigo Ruiz', 5, 0, 2.00, 'Mediocentro', 'España', 32, 'inigoruiz.jpg'),
+(73, 'Unai Gómez', 5, 0, 1.00, 'Mediocentro Ofensivo', 'España', 22, 'unaigomez.jpg'),
+(74, 'Unai Simón', 5, 0, 4.00, 'Portero', 'España', 28, 'unaisimon.jpg'),
+(75, 'Álex Padilla', 5, 0, 0.60, 'Portero', 'España', 22, 'alexpadilla.webp'),
+(76, 'Unai Egiluz', 5, 0, 0.60, 'Defensa Central', 'España', 23, 'unaiegiluz.jpeg'),
+(77, 'Marc-Andre Ter Stegen', 6, 0, 6.30, 'Portero', 'Aleman', 33, 'TerStegen.png'),
+(78, 'Alejandro Balde', 6, 0, 1.60, 'Defensa', 'Español', 21, 'ABalde.png'),
+(79, 'Ronald Araujo', 6, 0, 10.00, 'Defensa', 'Uruguay', 25, 'RAraujo.png'),
+(80, 'Pau Cubarsi', 6, 0, 4.70, 'Defensa ', 'España', 23, 'PCubarsi.jpg'),
+(81, 'Andreas Christensen', 6, 0, 9.00, 'Defensa', 'Dinamarca', 29, 'Chistensen.png'),
+(82, 'Gerard Martin', 6, 0, 0.20, 'Centrocampista', 'Español', 20, 'GerdadMartin.png'),
+(83, 'Jules Kounde', 6, 0, 5.40, 'Defensa', 'Frances', 25, 'Jkounde.png'),
+(84, 'Eric Garcia', 6, 0, 6.00, 'Defensa', 'España', 24, 'EGarcia.png'),
+(85, 'Gavi', 6, 0, 9.30, 'Centrocampista', 'España', 20, 'PGavi.png'),
+(86, 'Pedri', 6, 0, 12.50, 'Centrocampista', 'España', 22, 'Pedri.png'),
+(87, 'Fermin Lopez', 6, 0, 4.00, 'Centrocampista', 'España', 20, 'FerminLopez.png'),
+(88, 'Marc Casado', 6, 0, 0.40, 'Centrocampista', 'España', 19, 'MCasado.png'),
+(89, 'Dani Olmo', 6, 0, 9.30, 'Centrocampista', 'España', 25, 'DOlmo.png'),
+(90, 'Frenkie De Jong', 6, 0, 19.00, 'Centrocampista', 'Paises Bajos', 26, 'FdeJong.png'),
+(91, 'Marc Bernal', 6, 0, 0.26, 'Defensa', 'España', 18, 'MarcBernal.jpg'),
+(92, 'Ferran Torres', 6, 0, 10.00, 'Delantero', 'España', 23, 'FerranTorres.png'),
+(93, 'Robert Lewandowski', 6, 0, 33.30, 'Delantero', 'Polonia', 36, 'Lewandowski.png'),
+(94, 'Lamine Yamal', 6, 0, 15.00, 'Delantero', 'España', 16, 'LamineYamal.png'),
+(95, 'Raphina', 6, 0, 12.50, 'Delantero', 'Brasil', 27, ''),
+(96, 'Marcus Rashford', 6, 0, 15.60, 'Delantero', 'Inglaterra', 26, 'Rashford.png'),
+(97, 'Gerard Moreno', 7, 0, 4.00, 'Delantero central', 'España', 33, 'gerardMoreno.jpeg'),
+(98, 'Dani Parejo', 7, 0, 3.00, 'Mediocentro', 'España', 36, 'daniParejo.jpeg'),
+(99, 'Nicolás Pépé', 7, 0, 3.00, 'Extremo derecho', 'Costa de Marfil', 30, 'nicolasPepe.jpeg'),
+(100, 'Pau Navarro', 7, 0, 1.00, 'Defensa central', 'España', 20, 'pauNavarro.jpeg'),
+(101, 'Alfonso Pedraza', 7, 0, 2.00, 'Lateral izquierdo', 'España', 29, 'alfonsoPedraza.jpeg'),
+(102, 'Ayoze Pérez', 7, 0, 2.00, 'Extremo / segundo', 'España', 31, 'ayozePerez.jpeg'),
+(103, 'Juan Foyth', 7, 0, 2.00, 'Lateral derecho', 'Argentina', 27, 'juanFoyth.jpeg'),
+(104, 'Pape Gueye', 7, 0, 2.00, 'Mediocentro defensivo', 'Senegal', 26, 'pepeGueye.jpeg'),
+(105, 'Logan Costa', 7, 0, 2.00, 'Defensa central', 'Cabo Verde', 24, 'loganCosta.jpeg'),
+(106, 'Luiz Júnior', 7, 0, 1.00, 'Portero', 'Brasil', 23, 'luizJunior.jpeg'),
+(107, 'Trevor Buchanan', 7, 0, 2.00, 'Lateral derecho', 'Canada', 26, 'trevorBuchanan.jpeg'),
+(108, 'Byran Zaragoza', 8, 0, 4.00, 'delantero', 'España', 24, 'bryanzaragoza.jpg'),
+(109, 'Iago Aspas', 8, 0, 3.00, 'delantero', 'España', 38, 'iagoaspas.jpg'),
+(110, 'Borja Iglesias', 8, 0, 2.00, 'delantero', 'España', 32, 'borjaiglesias.jpg'),
+(111, 'Ferran Jutglà', 8, 0, 2.00, 'delantero', 'España', 26, 'ferranjutgla.jpg'),
+(112, 'Ilaix Moriba', 8, 0, 2.00, 'mediocampista', 'Guinea', 22, 'ilaixmoriba.jpg'),
+(113, 'Carl Starfelt', 8, 0, 2.00, 'defensa', 'Suecia', 30, 'starfelt.jpg'),
+(114, 'Franco Cervi', 8, 0, 1.00, 'mediocampista', 'Argentina', 31, 'francocervi.jpg'),
+(115, 'Fran Beltrán', 8, 0, 1.00, 'mediocampista', 'España', 26, 'franbeltran.jpg'),
+(116, 'Williot Swedberg', 8, 0, 1.00, 'mediocampista', 'Suecia', 21, 'swedberg.jpg'),
+(117, 'Hugo Sotelo', 8, 0, 1.00, 'mediocampista', 'España', 21, 'hugosotelo.jpg'),
+(118, 'Óscar Mingueza', 8, 0, 1.00, 'defensa', 'España', 26, 'mingueza.jpg'),
+(119, 'Joseph Aidoo', 8, 0, 1.00, 'defensa', 'Ghana', 29, 'josephaidoo.jpg'),
+(120, 'Marcos Alonso', 8, 0, 1.00, 'defensa', 'España', 34, 'marcosalonso.jpg'),
+(121, 'Mihailo Ristic', 8, 0, 1.00, 'defensa', 'Serbia', 29, 'mihailo.jpg'),
+(122, 'Sergio Carreira', 8, 0, 1.00, 'defensa', 'España', 24, 'sergiocarreira.jpg'),
+(123, 'Carlos Domínguez', 8, 0, 1.00, 'defensa', 'España', 24, 'dominguez.jpg'),
+(124, 'Javi Rodríguez', 8, 0, 1.00, 'defensa', 'España', 22, 'javirodriguez.jpg'),
+(125, 'Iván Villar', 8, 0, 1.00, 'portero', 'España', 28, 'ivanvillar.jpg'),
+(126, 'Andrei Radu', 8, 0, 1.00, 'portero', 'Rumania', 28, 'andreiradu.jpg'),
+(127, 'Pablo Durán', 8, 0, 1.00, 'delantero', 'España', 24, 'pabloduran.jpg'),
+(128, 'JUAN AGUSTíN MUSSO', 9, 0, 0.00, 'Portero', 'Argentina', 31, 'jam.png'),
+(129, 'JAN OBLAK', 9, 0, 0.00, 'Portero', 'Eslovenia', 32, 'jo.png'),
+(130, 'JOSé MARíA GIMéNEZ DE VARGAS', 9, 0, 0.00, 'Defensa', 'Uruguay', 30, 'jmgv.png'),
+(131, 'MATTEO RUGGERI', 9, 0, 0.00, 'Defensa', 'Italia', 23, 'mr.png'),
+(132, 'CLéMENT NICOLAS LAURENT LENGLET', 9, 0, 0.00, 'Defensa', 'Francia', 30, 'cnll.png'),
+(133, 'NAHUEL MOLINA LUCERO', 9, 0, 0.00, 'Defensa', 'Argentina', 27, 'nml.png'),
+(134, 'DáVID HANCKO', 9, 0, 0.00, 'Defensa', 'Eslovaquia', 27, 'dh.png'),
+(135, 'MARC PUBILL PAGéS', 9, 0, 0.35, 'Defensa', 'España', 22, 'mpp.png'),
+(136, 'CONOR GALLAGHER', 9, 0, 0.50, 'centrocampista', 'Inglaterra', 25, 'cg.png'),
+(137, 'JOO LUCAS DE SOUZA CARDOSO', 9, 0, 0.85, 'centrocampista', 'Italia', 24, 'jlsc.png'),
+(138, 'THIAGO EZEQUIEL ALMADA', 9, 0, 0.00, 'delantero ', 'Argentina ', 24, 'tea.png'),
+(139, 'Juan carlos', 10, 0, 0.40, 'portero', 'España', 37, ''),
+(140, 'victor reis', 10, 0, 0.10, 'defensa', 'brasil', 19, ''),
+(141, 'alejandro Frances', 10, 0, 3.00, 'defensa', 'españa', 23, ''),
+(142, 'Paulo Gazzaniga', 10, 0, 1.20, 'portero', 'argentina', 33, ''),
+(143, 'Iván Martín', 10, 0, 1.70, 'centrocampista', 'españa', 26, ''),
+(144, 'Jhon Solís', 10, 0, 0.20, 'centrocampista', 'colombia', 20, ''),
+(145, 'David López', 10, 0, 3.80, 'defensa', 'españa', 36, ''),
+(146, 'Daley Blind', 10, 0, 1.80, 'defensa', 'Países Bajos', 35, ''),
+(147, 'Arnau Martínez', 10, 0, 1.20, 'defensa', 'españa', 22, ''),
+(148, 'Cristhian Stuani', 10, 0, 1.10, 'delantero', 'uruguay', 38, ''),
+(149, 'Viktor Tsygankov', 10, 0, 1.40, 'delantero', 'ucrania', 27, ''),
+(150, 'cristian Portu', 10, 0, 1.80, 'delantero', 'españa', 33, ''),
+(151, 'Joel Roca', 10, 0, 0.30, 'delantero ', 'españa', 20, ''),
+(152, 'E. García', 10, 0, 0.30, 'defensa', 'españa', 24, ''),
+(153, 'Miguel Gutiérrez', 10, 0, 0.30, 'defensa', 'españa', 24, ''),
+(154, 'Yan Couto', 10, 0, 0.20, 'defensa', 'brasil', 23, ''),
+(155, 'Aleix García', 10, 0, 0.10, 'centrocampista', 'españa', 28, ''),
+(156, 'Yangel Herrera', 10, 0, 0.20, 'centrocampista', 'Venezuela', 27, ''),
+(157, 'Borja García', 10, 0, 0.40, 'centrocampista', 'España', 34, ''),
+(158, 'Ibrahima Kébé', 10, 0, 0.30, 'centrocampista', 'Mali', 25, ''),
+(159, 'Javier Guerra', 11, 0, 0.40, 'Centrocampista', 'Valencia', 22, 'javi_guerra.jpg'),
+(160, 'Jose Luis Garcia', 11, 0, 1.30, 'Centrocampista', 'Valencia', 27, 'joseluisgarcia.jpg'),
+(161, 'Julen Agirrezabala', 11, 0, 0.40, 'Guardameta', 'España', 24, 'julen_agirrezabala.jpg'),
+(162, 'Arnaut Danjuma', 11, 0, 3.50, 'Delantero', 'Nigeria', 28, 'arnautDanjuma.jpg'),
+(163, 'Dani Raba', 11, 0, 0.44, 'Delantero', 'España', 29, 'daniraba.jpg'),
+(164, 'Jose Manuel Arias', 11, 0, 0.21, 'Defensa', 'Sevilla', 25, 'josemanuelarias.jpg'),
+(165, 'Hugo Duro', 11, 0, 2.89, 'Delantero', 'España', 25, 'hugo_duro.jpg'),
+(166, 'Filip Ugrinic', 11, 0, 0.90, 'Centrocampista', 'Suiza', 26, 'filipugrinic.jpg'),
+(167, 'Andre Almeida', 11, 0, 0.60, 'centrocampista', 'Portugal', 25, 'andre_almeida.jpg'),
+(168, 'Jose Luis Gaya', 11, 0, 5.83, 'Defensa', 'Valencia', 30, 'JoseLuisGaya.jpg'),
+(169, 'Baptiste Santamaria', 11, 0, 2.00, 'centrocampista', 'Francia', 30, 'Baptistansantamaria.jpg'),
+(170, 'Vedat muriqi', 12, 0, 0.50, 'Delantero', 'Kosovo', 31, 'vedat_muriqui.jpg'),
+(171, 'Leo Román', 12, 0, 0.70, 'Portero', 'España', 25, 'leo_roman.jpg'),
+(172, 'Pablo Torre', 12, 0, 0.20, 'Centrocampista', 'España', 22, 'pablo_torre.png'),
+(173, 'Dani Rodriguéz', 12, 0, 8.00, 'Centrocampista', 'España', 37, 'dani_rodriguez.jpg'),
+(174, 'Pablo Maffeo', 12, 0, 1.00, 'Defensa', 'Argentina', 28, 'pablo_maffeo.webp'),
+(175, 'Takuma Asano', 12, 0, 1.00, 'Delantero', 'Japón', 30, 'takuma_asano.jpg'),
+(176, 'Johan Mojica', 12, 0, 0.40, 'Defensa', 'Colombia', 33, 'johann_mojica.jpg'),
+(177, 'Samuel Costa', 12, 0, 0.60, 'Centrocampista', 'Portugal', 24, 'samuel_costa.jpg'),
+(178, 'Antonio Raíllo', 12, 0, 0.70, 'Defensa', 'España', 33, 'antoni_railoo.jpg'),
+(179, 'Martin Valjent', 12, 0, 0.50, 'Defensa', 'Eslovaquia', 29, 'martin_valjent.jpg'),
+(180, 'Mateo Joseph', 12, 0, 0.90, 'Delantero', 'España', 21, 'mateo_joseph.jpeg'),
+(181, 'Etta Yong', 13, 0, 4.00, 'delantero', 'Camerún', 21, 'etta.jpg'),
+(182, 'Iván Romero', 13, 0, 1.00, 'delantero', 'España', 24, 'ivan_romero.jpg'),
+(183, 'Carlos Álvarez', 13, 0, 2.00, 'centrocampista', 'España', 22, 'carlos.jpeg'),
+(184, 'Jon Ander', 13, 0, 2.00, 'centrocampista', 'España', 25, 'jon.jpg'),
+(185, 'Pablo Martínez', 13, 0, 1.00, 'centrocampista', 'España', 27, 'pablo.jpeg'),
+(186, 'Oriol Rey', 13, 0, 3.00, 'centrocampista', 'España', 27, 'oriol.jpeg'),
+(187, 'Manu Sánchez', 13, 0, 1.00, 'defensa', 'España', 25, 'manu.jpg'),
+(188, 'Matías Moreno', 13, 0, 2.00, 'defensa', 'España', 24, 'mati.jpg'),
+(189, 'Unai Elgezabal', 13, 0, 1.00, 'defensa', 'España', 26, 'unai.png'),
+(190, 'Jeremy Toljan', 13, 0, 4.00, 'defensa', 'España', 22, 'jeremy_toljan.jpg'),
+(191, 'Mathew Ryan', 13, 0, 3.00, 'portero', 'Australia', 28, 'mathew.webp'),
+(192, 'M. Dituro', 14, 0, 0.56, 'portero', 'Argentina', 38, 'M.Dituro.jpg'),
+(193, 'Adri Pedrosa', 14, 0, 1.10, 'defensa', 'España', 27, 'Adrià_Pedrosa.jpg'),
+(194, 'Bambo Diaby', 14, 0, 0.84, 'defensa', 'España', 27, 'Babo_Diaby.jpg'),
+(195, 'Bigas', 14, 0, 0.88, 'defensa', 'España', 35, 'Bigas.jpg'),
+(196, 'Álvaro Nuñez', 14, 0, 0.26, 'defensa', 'España', 25, 'Álvaro Nuñez.jpg'),
+(197, 'John', 14, 0, 0.52, 'defensa', 'España', 24, 'John.jpg'),
+(198, 'L.Petrot', 14, 0, 0.39, 'defensa', 'Francia', 28, 'L.Petrot.jpg'),
+(199, 'F.Redondo', 14, 0, 4.50, 'centrocampista', 'España', 22, 'F.Redondo.jpg'),
+(200, 'Y.Santiago', 14, 0, 0.15, 'centrocampista', 'España', 22, 'Y.Santiago.jpg'),
+(201, 'M. Agudo', 14, 0, 0.42, 'centrocampista', 'España', 25, 'M.Agudo.jpg'),
+(202, 'Germán V.', 14, 0, 0.60, 'centrocampista', 'España', 23, 'Gerán_V..jpg'),
+(203, 'A.Febas', 14, 0, 0.90, 'centrocampista', 'España', 29, 'A.Febas.jpg'),
+(204, 'M. Neto', 14, 0, 2.00, 'centrocampista', 'Portugal', 22, 'M.Neto.jpg'),
+(205, 'André de Silva', 14, 0, 4.10, 'delantero', 'Portugal', 29, 'André_de_Silva.jpg'),
+(206, 'Rafa Mir', 14, 0, 1.90, 'delantero', 'España', 28, 'Rafair.jpg'),
+(207, 'Álvaro R.', 14, 0, 1.20, 'delantero', 'Uguayo', 21, 'Álvaro_R..jpg'),
+(208, 'R. Mendoza', 14, 0, 0.20, 'centrocampista', 'España', 20, 'R.endoza.jpg'),
+(209, 'Grady Diangana', 14, 0, 1.46, 'delantero', 'Congo', 27, 'Grady_Diangana.jpg'),
+(210, 'Héctor Fort', 14, 0, 0.85, 'defensa', 'España', 19, 'Héctor_Fort.jpg'),
+(211, 'V. Chust', 14, 0, 0.73, 'defensa', 'España', 25, 'V.Chust.jpg'),
+(212, 'Letacek', 15, 0, 0.60, 'Portero', 'Republica Checa', 26, 'latacek.png'),
+(213, 'Djene', 15, 0, 1.80, 'Defensa', 'Togo', 33, 'djene.png'),
+(214, 'Abdel abkar', 15, 0, 2.50, 'Defensa', 'Marruecos', 26, 'abdel.png'),
+(215, 'Neyou', 15, 0, 2.00, 'Centrocampista', 'Camerun', 28, 'neyou.png'),
+(216, 'L.milla', 15, 0, 1.50, 'Centrocampista', 'España', 30, 'milla.png'),
+(217, 'Mario martin', 15, 0, 0.50, 'Centrocampista', 'España', 21, 'mario.png'),
+(218, 'Juanmi', 15, 0, 2.50, 'Delantero', 'España', 32, 'juanmi.png'),
+(219, 'Arambarri', 15, 0, 3.70, 'Centrocampista', 'Argentina', 29, 'arambarri.png'),
+(220, 'B. mayoral', 15, 0, 4.80, 'Delantero', 'España', 28, 'mayoral.png'),
+(221, 'Kamara', 15, 0, 0.50, 'Delantero', 'España', 22, 'kamara.png'),
+(222, 'David soria', 15, 0, 2.50, 'Portero', 'España', 32, 'davidsoria.png'),
+(223, 'Javi muñoz', 15, 0, 1.70, 'Centrocampista', 'España', 30, 'javi.png'),
+(224, 'Rico', 15, 0, 2.00, 'Defensa', 'España', 32, 'rico.png'),
+(225, 'Kiko F', 15, 0, 1.20, 'Defensa', 'España', 34, 'kiko.png'),
+(226, 'Alex', 15, 0, 1.00, 'Delantero', 'España', 28, 'alex.png'),
+(227, 'C. da costa', 15, 0, 0.80, 'Delantero', 'Guinea', 23, 'costa.png'),
+(228, 'Iglesias', 15, 0, 0.80, 'Defensa', 'España', 27, 'iglesias.png'),
+(229, 'Domingos D.', 15, 0, 1.30, 'Defensa', 'Portugues', 30, 'domingos.png'),
+(230, 'Liso', 15, 0, 0.30, 'Delantero', 'España', 20, 'liso.png'),
+(231, 'Davinchi', 15, 0, 0.30, 'Defensa', 'España', 17, 'davinchi.png'),
+(232, 'Antonio Sivera', 16, 0, 1.56, 'Portero', 'España', 29, 'antonio_sivera.jpg'),
+(233, 'Raúl Fernández', 16, 0, 0.62, 'Portero', 'España', 37, 'profile_image.jpg'),
+(234, 'Facundo Garces', 16, 0, 0.94, 'Defensa', 'Argentina', 26, 'facundo_garces.jpg'),
+(235, 'Youssef Enriquez', 16, 0, 0.42, 'Defensa', 'Marruecos', 19, 'profile_image.jpg'),
+(236, 'Jon Pacheco', 16, 0, 1.00, 'Defensa', 'España', 24, 'profile_image.jpg'),
+(237, 'Nikola Maras', 16, 0, 0.84, 'Defensa', 'Serbia', 29, 'nikola.jpg'),
+(238, 'Nahuel Tenaglia', 16, 0, 0.94, 'Defensa', 'Argentina', 29, 'profile_image.jpg'),
+(239, 'Jonny Otto', 16, 0, 1.66, 'Defensa', 'España', 31, 'profile_image.jpg'),
+(240, 'Moussa Diarra', 16, 0, 0.80, 'Defensa', 'Mali', 24, 'profile_image.jpg'),
+(241, 'Víctor Parada', 16, 0, 0.42, 'Defensa', 'España', 23, 'profile_image.jpg'),
+(242, 'Denis Suárez', 16, 0, 1.87, 'Centrocampista', 'España', 31, 'denis_suarez.jpg'),
+(243, 'Ander Guevara', 16, 0, 1.46, 'Centrocampista', 'España', 28, 'ander_guevara.jpg'),
+(244, 'Carlos Vicente', 16, 0, 1.00, 'Centrocampista', 'España', 26, 'carlo_vicente.jpg'),
+(245, 'Antonio Blanco', 16, 0, 1.15, 'Centrocampista', 'España', 25, 'antonio_blanco.jpg'),
+(246, 'Carles Aleñá', 16, 0, 1.26, 'Centrocampista', 'España', 27, 'carles_aleña.jpg'),
+(247, 'Jon Guiridi', 16, 0, 1.26, 'Centrocampista', 'España', 30, 'jon_guiridi.jpg'),
+(248, 'Pablo Ibáñez', 16, 0, 11.00, 'Centrocampista', 'España', 27, 'pablo_ibañez.jpg'),
+(249, 'Calebe Gonalves', 16, 0, 0.52, 'Centrocampista', 'Brasil', 25, 'calebe.webp'),
+(250, 'Abederrahmane Rebbach', 16, 0, 0.73, 'Centrocampista', 'Algeria', 27, 'profile_image.jpg'),
+(251, 'Carlos Protesoni', 16, 0, 0.33, 'Centrocampista', 'Uruguay', 27, 'profile_image.jpg'),
+(252, 'Lander Pinillos', 16, 0, 1.00, 'Centrocampista', 'España', 21, 'profile_image.jpg'),
+(253, 'Mariano Díaz', 16, 0, 1.56, 'Delantero', 'R.Dominicana', 32, 'mariano_diaz.jpeg'),
+(254, 'Toni Martinez', 16, 0, 1.87, 'Delantero', 'España', 28, 'profile_image.jpg'),
+(255, 'Lucas Boyé', 16, 0, 2.00, 'Delantero', 'Argentina', 29, 'lucas_boye.jpg'),
+(256, 'Dani Cárdenas', 17, 0, 0.70, 'Portero', 'España', 27, 'dani_cardenas.jpg'),
+(257, 'Iván Balliu', 17, 0, 1.20, 'Defensa', 'Albania', 32, 'ivan_balliu.jpg'),
+(258, 'Abdul Mumin', 17, 0, 0.90, 'Defensa', 'Ghana', 26, 'abdul_munin.jpg'),
+(259, 'Pep Chavarría', 17, 0, 0.80, 'Defensa', 'España', 26, 'pep_chavarria.jpg'),
+(260, 'Óscar Trejo', 17, 0, 1.50, 'Mediocampista', 'Argentina', 36, 'oscar_trejo.jpg'),
+(261, 'Isi Palazón', 17, 0, 1.50, 'Mediocampista', 'España', 29, 'isi_palazon.jpg'),
+(262, 'Pathé Ciss', 17, 0, 1.20, 'Mediocampista', 'Senegal', 30, 'pathe_ciss.jpg'),
+(263, 'Álvaro García', 17, 0, 1.80, 'Delantero', 'España', 32, 'alvaro_garcia.jpg'),
+(264, 'Sergio Camello', 17, 0, 1.00, 'Delantero', 'España', 24, 'serguio_camello.jpg'),
+(265, 'Jorge De Frutos', 17, 0, 0.80, 'Delantero', 'España', 29, 'jorge_de_frutos.jpg'),
+(266, 'Unai López', 17, 0, 1.20, 'Mediocampista', 'España', 30, 'unai_lopez.jpg'),
+(267, 'Luiz Felipe Ramos ', 17, 0, 2.00, 'Defensa', 'Brasil', 28, 'luis_felipe_ramos.jpg'),
+(268, 'Álex Remiro', 18, 0, 12.00, 'Portero', 'España', 30, 'alexremiro.jpg'),
+(269, 'Caleta-Car', 18, 0, 11.00, 'Defensa', 'Croacia', 29, 'caleta-car.jpg'),
+(270, 'Igor Zubeldia', 18, 0, 9.00, 'Defensa', 'España', 28, 'igorzubielda.jpg'),
+(271, 'Aihen Muñoz', 18, 0, 0.00, 'Defensa', ' España', 28, 'aihenmunoz.jpg'),
+(272, 'Jon Aramburu', 18, 0, 1.00, 'Defensa', 'Venezuela', 23, 'jonaramburu.jpg'),
+(273, 'J. Gorrotxategi', 18, 0, 0.00, 'Centrocampista', 'España', 23, 'jgorrotxategi.jpg'),
+(274, 'Carlos Soler', 18, 0, 1.00, 'Centrocampista', 'España', 28, 'carlossoler.jpg'),
+(275, 'Pablo Marín', 18, 0, 0.00, 'Centrocampista', 'España', 22, 'pablomarin.jpg'),
+(276, 'A. Barrenetxea', 18, 0, 1.00, 'Delantero', 'España', 23, 'abarrenetxea.jpg'),
+(277, 'Take Kubo', 18, 0, 1.00, 'Delantero', 'Japón', 24, 'takekubo.jpg'),
+(278, 'M. Oyarzabal', 18, 0, 2.00, 'Delantero', 'España', 28, 'oyarzabal.jpg'),
+(279, 'José Ángel Carmona', 19, 0, 0.50, 'Lateral Derecho', 'España', 23, 'Jose_Angel_Carmona.jpg'),
+(280, 'Fabio cardoso', 19, 0, 0.80, 'Central', 'Portugal', 31, 'Fabio_cardoso.jpg'),
+(281, 'Kike Salas', 19, 0, 0.40, 'Central', 'España', 23, 'Kike_Salas.jpg'),
+(282, 'Gabriel Suazo', 19, 0, 0.90, 'Lateral Izquierdo', 'Chile', 28, 'Gabriel_Suazo.jpg'),
+(283, 'Nemanja Gudelj', 19, 0, 0.40, 'Centrocampista def.', 'Serbia', 33, 'Nemanja_Gudelj.jpg'),
+(284, 'Lucien Agoumé', 19, 0, 0.30, 'Centrocampista def.', 'Francia', 23, 'Lucien_Agoumé.jpg'),
+(285, 'Djibril Sow', 19, 0, 0.90, 'Centrocampista', 'Suiza', 28, 'Djibril_Sow.jpg'),
+(286, 'Rubén Vargas', 19, 0, 0.50, 'Extremo izquierdo', 'Suiza', 27, 'Rubén_Vargas.jpg'),
+(287, 'Chidera Ejuke', 19, 0, 0.80, 'Extremo Izquierdo', 'Nigeria', 27, 'Chidera_Ejuke.jpg'),
+(288, 'Isaac Romero', 19, 0, 0.30, 'Delantero Centro', 'España', 25, 'Isaac_Romero.jpg'),
+(289, 'Javi Puado', 20, 0, 0.80, 'Delantero', 'España', 27, 'Puado.jpg'),
+(290, 'Tyrhys Dolan', 20, 0, 0.30, 'Delantero', 'Inglaterra', 23, 'Dolan.jpg'),
+(291, 'Roberto Fernández', 20, 0, 1.20, 'Delantero', 'España', 23, 'Fernández.jpg'),
+(292, 'Pere Milla', 20, 0, 0.52, 'Centrocampista', 'España', 32, 'Milla.jpg'),
+(293, 'Marko Dmitrović', 20, 0, 1.20, 'Portero', 'Serbia', 33, 'marko.jpg'),
+(294, 'Charles Pickel', 20, 0, 1.40, 'Centrocampista', 'Rep.Congo', 28, 'Pickel.jpg'),
+(295, 'Eduardo Expósito', 20, 0, 1.20, 'Centrocampista', 'España', 29, 'Expósito.jpg'),
+(296, 'Ramón Terrats', 20, 0, 0.60, 'Centrocampista', 'España', 24, 'Terrats.jpg'),
+(297, 'Omar El Hilali', 20, 0, 1.00, 'Defensa', 'Marruecos', 22, 'Hilali.jpg'),
+(298, 'Fernando Calero', 20, 0, 0.52, 'Defensa', 'España', 30, 'Calero.jpg'),
+(299, 'Clemens Riedel', 20, 0, 0.84, 'Defensa', 'Alemania', 22, 'Riedel.jpg'),
+(300, 'Urko González', 20, 0, 0.40, 'Centrocampista', 'España', 24, 'urko.jpg'),
+(301, 'Kike García', 20, 0, 1.00, 'Delantero', 'España', 35, 'García.jpg'),
+(302, 'Carlos Romero', 20, 0, 0.94, 'Defensa', 'España', 23, 'Romero.jpg'),
+(303, 'Rubén Sánchez', 20, 0, 0.72, 'Defensa', 'España', 24, 'Sánchez.jpg'),
+(304, 'Miguel Ángel', 20, 0, 1.04, 'Defensa', 'España', 27, 'Ángel.jpg'),
+(305, 'Luca Koleosho', 20, 0, 1.04, 'Delantero', 'España', 21, 'Koleosho.jpg'),
+(306, 'Leandro Cabrera', 20, 0, 1.04, 'Defensa', 'Uruguay', 34, 'Cabrera.jpg'),
+(307, 'Angel Fortuno', 20, 0, 0.21, 'Portero', 'España', 23, 'Fortuño.jpg'),
+(308, 'José Salinas', 20, 0, 0.84, 'Defensa', 'España', 24, 'Salinas.jpg'),
+(309, 'Antoniu Roca', 20, 0, 0.72, 'Delantero', 'España', 23, 'Roca.jpg'),
+(310, 'Francisco Javier', 20, 0, 0.24, 'Centrocampista', 'España', 21, 'Javier.jpg'),
+(311, 'Pol Lozano', 20, 0, 1.14, 'Centrocampista', 'España', 25, 'Lozano.jpg'),
+(312, 'Jofre Carreras', 20, 0, 1.04, 'Delantero', 'España', 24, 'Carreras.jpg'),
+(313, 'Pol Tristan', 20, 0, 0.10, 'Portero', 'España', 23, 'poltristan.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nombre_usuario` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `id_equipo_fav` int(11) DEFAULT NULL,
+  `precio_suscripcion` int(11) NOT NULL DEFAULT 0,
+  `puntuacion_app` int(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre_usuario`, `password`, `email`, `id_equipo_fav`, `precio_suscripcion`, `puntuacion_app`) VALUES
+(2, 'Pau Montes', '111', 'paumonts04@gmail.com', 6, 0, NULL),
+(4, 'sam', '222', 'samu@gay.es', NULL, 0, NULL),
+(5, 'Santi', '333', 'asfas@safasf.com', NULL, 10, NULL),
+(6, 'Draku', '6969', 'dfsd@fdsdf.df', 15, 0, NULL);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `equipos`
+--
+ALTER TABLE `equipos`
+  ADD PRIMARY KEY (`id_equipo`);
+
+--
+-- Indices de la tabla `jugadores`
+--
+ALTER TABLE `jugadores`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre_unique` (`nombre`),
+  ADD KEY `fk_jugador_equipo` (`id_equipo`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre_usuario_unique` (`nombre_usuario`),
+  ADD KEY `fk_usuario_equipo` (`id_equipo_fav`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `equipos`
+--
+ALTER TABLE `equipos`
+  MODIFY `id_equipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de la tabla `jugadores`
+--
+ALTER TABLE `jugadores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=314;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `jugadores`
+--
+ALTER TABLE `jugadores`
+  ADD CONSTRAINT `fk_jugador_equipo` FOREIGN KEY (`id_equipo`) REFERENCES `equipos` (`id_equipo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `fk_usuario_equipo` FOREIGN KEY (`id_equipo_fav`) REFERENCES `equipos` (`id_equipo`) ON DELETE SET NULL ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
