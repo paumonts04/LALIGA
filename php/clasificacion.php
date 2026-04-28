@@ -11,11 +11,12 @@ require_once 'header.php';
 $sql = "SELECT 
             e.id_equipo,
             e.equipo,
-            COALESCE(SUM(j.goles), 0) AS goles_totales
+            SUM(j.goles) AS goles_totales
         FROM equipos e
-        LEFT JOIN jugadores j ON e.id_equipo = j.id_equipo
+        JOIN jugadores j ON e.id_equipo = j.id_equipo
         GROUP BY e.id_equipo, e.equipo
-        ORDER BY goles_totales DESC, e.equipo ASC";
+        ORDER BY goles_totales DESC, e.equipo ASC
+        LIMIT 10";
 
 $res = $con->query($sql);
 ?>

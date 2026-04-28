@@ -1,3 +1,4 @@
+
 <?php
 require_once 'conexion.php';
 
@@ -6,17 +7,9 @@ if (!isset($_SESSION['usuario_id'])) {
     exit();
 }
 
-$res = $con->query("SELECT id FROM jugadores");
-$jugadores = [];
-if ($res) {
-    while ($fila = $res->fetch_assoc()) {
-        $jugadores[] = $fila;
-    }
-}
-foreach ($jugadores as $jugador) {
-    $id = $jugador['id'];
-    $goles = rand(0, 50);
-    $con->query("UPDATE jugadores SET goles = $goles WHERE id = $id");
+$sqlUpdate = "UPDATE jugadores SET goles = FLOOR(RAND() * 51)";
+if (!$con->query($sqlUpdate)) {
+    die("Error al generar goles: " . $con->error);
 }
 
 header("Location: clasificacion.php");
