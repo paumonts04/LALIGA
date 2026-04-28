@@ -1,6 +1,10 @@
 # ⚽ LaLiga Stats
 
+![Estado](https://img.shields.io/badge/estado-en%20desarrollo-yellow)
+
 > Aplicación web de estadísticas de la Liga Española de Fútbol desarrollada como proyecto de fin de ciclo superior.
+
+> ⚠️ **Este proyecto está actualmente en desarrollo.** Algunas funcionalidades pueden estar incompletas o sujetas a cambios.
 
 ---
 
