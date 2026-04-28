@@ -633,35 +633,11 @@ body {
 
 .nav-bar-flex {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    gap: 25px;
-    padding: 5px 30px 15px 30px; /* Añadimos padding abajo para separar el scroll */
-    overflow-x: auto;
-    white-space: nowrap;
-    
-    /* Configuración para Firefox (es más limitada, solo permite fino/grueso) */
-    scrollbar-width: thin;
-    scrollbar-color: #ccc transparent;
-}
-
-/* PERSONALIZACIÓN DEL SCROLLBAR (Chrome, Safari, Edge) */
-.nav-bar-flex::-webkit-scrollbar {
-    height: 4px; /* <--- AQUÍ controlas el grosor (antes era mucho más grande) */
-}
-
-.nav-bar-flex::-webkit-scrollbar-track {
-    background: transparent; /* Fondo del scroll invisible */
-}
-
-.nav-bar-flex::-webkit-scrollbar-thumb {
-    background: #ddd; /* Color de la barrita */
-    border-radius: 10px; /* Redondeada */
-    transition: background 0.3s;
-}
-
-.nav-bar-flex::-webkit-scrollbar-thumb:hover {
-    background: #e63946; /* Se vuelve roja cuando pasas el ratón por encima */
+    gap: 10px;
+    padding: 8px 6px;
+    flex-wrap: nowrap;
 }
 
 /* ESTILO DE LOS ITEMS (NITIDOS) */
@@ -670,27 +646,143 @@ body {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    min-width: 80px;
+    flex: 1 1 0;
+    min-width: 0;
     transition: transform 0.2s ease;
     opacity: 1;
 }
 
 .nav-equipo-item img {
-    width: 40px;
-    height: 40px;
+    width: 62px;
+    height: 62px;
     object-fit: contain;
     margin-bottom: 6px;
     image-rendering: -webkit-optimize-contrast; 
 }
 
 .nav-equipo-nombre {
-    font-size: 0.72rem;
-    color: #444;
+    font-size: 0.58rem;
+    color: #ffffff;
     font-weight: 700;
     text-align: center;
+    line-height: 1.05;
 }
 
 /* SELECCIONADO */
 .nav-equipo-item.active .nav-equipo-nombre {
     color: #e63946; 
+}
+
+/* CLASIFICACION */
+.titulo-pagina {
+    margin-bottom: 22px;
+}
+
+.titulo-pagina h1 {
+    color: #1a2a6c;
+    font-size: 2rem;
+    margin-bottom: 6px;
+}
+
+.titulo-pagina p {
+    color: #5f6b7a;
+}
+
+.tabla-clasificacion-wrapper {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(17, 24, 39, 0.08);
+    overflow: hidden;
+    border: 1px solid #e8edf5;
+}
+
+.tabla-clasificacion {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-clasificacion thead th {
+    background: #1a2a6c;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 14px 18px;
+    text-align: left;
+}
+
+.tabla-clasificacion td {
+    padding: 15px 18px;
+    border-bottom: 1px solid #edf1f7;
+    font-weight: 600;
+    color: #1f2937;
+    vertical-align: middle;
+}
+
+.equipo-clasif {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    vertical-align: middle;
+}
+
+.escudo-clasif {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.tabla-clasificacion tbody tr:nth-child(even) {
+    background-color: #f8fbff;
+}
+
+.tabla-clasificacion tbody tr:hover {
+    background-color: #eef4ff;
+}
+
+.tabla-clasificacion tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla-clasificacion th:first-child {
+    width: 90px;
+    text-align: center;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.tabla-clasificacion td:first-child {
+    width: 90px;
+    text-align: center;
+    font-weight: 800;
+    color: #1a2a6c;
+}
+
+.tabla-clasificacion th:last-child {
+    text-align: right;
+    color: #ffffff;
+}
+
+.tabla-clasificacion td:last-child {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: #0f4f1f;
+}
+
+@media (max-width: 768px) {
+    .titulo-pagina h1 {
+        font-size: 1.55rem;
+    }
+
+    .tabla-clasificacion thead th,
+    .tabla-clasificacion td {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+
+    .tabla-clasificacion th:first-child,
+    .tabla-clasificacion td:first-child {
+        width: 70px;
+    }
 }

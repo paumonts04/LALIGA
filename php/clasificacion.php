@@ -11,10 +11,11 @@ require_once 'header.php';
 $sql = "SELECT 
             e.id_equipo,
             e.equipo,
+            e.escudo,
             SUM(j.goles) AS goles_totales
         FROM equipos e
         JOIN jugadores j ON e.id_equipo = j.id_equipo
-        GROUP BY e.id_equipo, e.equipo
+        GROUP BY e.id_equipo, e.equipo, e.escudo
         ORDER BY goles_totales DESC, e.equipo ASC
         LIMIT 10";
 
@@ -23,7 +24,7 @@ $res = $con->query($sql);
 
 <main class="content-wrapper">
     <div class="titulo-pagina">
-        <h1>Clasificacion de Equipos</h1>
+        <h1>Clasificación de Equipos</h1>
         <p>Ordenados de mayor a menor por goles totales.</p>
     </div>
 
@@ -44,7 +45,12 @@ $res = $con->query($sql);
                         ?>
                         <tr>
                             <td><?php echo $posicion; ?></td>
-                            <td><?php echo htmlspecialchars($fila['equipo']); ?></td>
+                            <td>
+                                <span class="equipo-clasif">
+                                    <img src="/LALIGA/img/escudos/<?php echo htmlspecialchars($fila['escudo']); ?>" alt="<?php echo htmlspecialchars($fila['equipo']); ?>" class="escudo-clasif" onerror="this.src='/LALIGA/img/escudos/default.png';">
+                                    <span><?php echo htmlspecialchars($fila['equipo']); ?></span>
+                                </span>
+                            </td>
                             <td><?php echo (int)$fila['goles_totales']; ?></td>
                         </tr>
                         <?php
